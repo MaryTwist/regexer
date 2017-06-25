@@ -1,0 +1,64 @@
+﻿<div id="app">
+    <w3-sidebar v-bind:show="isSlidebarVisible" v-on:hidden="isSlidebarVisible = false">
+        Ваши скрипты:<br />
+        <div v-for="s in scripts" class="w3-hover-light-grey w3-cell-row">
+            <button v-on:click="scriptOpen(s)" class="w3-cell w3-button w3-left w3-tiny w3-text-gray">{{ s.Name }}</button>
+            <button v-on:click="scriptDelete(s)" class="w3-cell w3-button w3-right w3-tiny">&times;</button>
+        </div>
+    </w3-sidebar>
+    <div>
+        <button v-on:click="isSlidebarVisible = true" class="w3-button">&gt;</button>
+    </div>
+    <div class="w3-row w3-deep-purple">
+        <div class="w3-col m6">
+            <w3-tabs>
+                <w3-tab title="Скрипты">
+                    Выражение поиска:<br />
+                    <textarea v-model="currentScript.SearchPattern" class="w3-code"></textarea><br />
+                    Выражение замены:<br />
+                    <textarea v-model="currentScript.ReplacePattern" class="w3-code"></textarea><br />
+                    <button v-on:click="btnSave">Сохранить</button>
+                </w3-tab>
+                <w3-tab title="Цепочки">
+                    Даа, редактируем цепочки, детка!
+                </w3-tab>
+            </w3-tabs>
+        </div>
+        <div class="w3-col m6">
+            <w3-tabs>
+                <w3-tab title="Текст">
+                    Обработка введённого текста.<br />
+                    Исходный текст:<br />
+                    <textarea v-model="inputText" class="w3-code"></textarea><br />
+                    <button v-on:click="btnRun" class="w3-button w3-ripple w3-green">Run &gt;</button>
+                    <hr />
+                    Результирующий текст:<br />
+                    <textarea v-model="outputText" class="w3-code"></textarea>
+                </w3-tab>
+                <w3-tab title="Файл">
+                    Обработка файла<br />
+                    Даа, обрабатываем файлы, детка!
+                </w3-tab>
+            </w3-tabs>
+        </div>
+    </div>
+    <div class="w3-modal" v-bind:class="{ 'w3-show': modals.saveDialog.isActive }">
+        <div class="w3-modal-content w3-animate-top w3-card-4">
+            <header class="w3-container w3-teal">
+                <span v-on:click="saveDialog_hide" class="w3-button w3-display-topright">&times;</span>
+                <h2>Modal Header</h2>
+            </header>
+            <div class="w3-container">
+                Название файла:
+                <input v-model="currentScript.Name" /><br />
+                Описание скрипта:
+                <input v-model="currentScript.Description" /><br />
+            </div>
+            <footer class="w3-container w3-teal">
+                <p>
+                    <button v-on:click="saveDialog_btnSave">Сохранить</button>
+                </p>
+            </footer>
+        </div>
+    </div>
+</div>

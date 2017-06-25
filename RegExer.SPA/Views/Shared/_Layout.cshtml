@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="@Url.Content("~/content/site.css")" />
+    <title>@ViewBag.Title</title>
+</head>
+<body class="w3-black">
+    <div class="w3-container">
+        <div class="w3-text-white">
+            <a target="_blank" href="https://msdn.microsoft.com/ru-ru/library/az24scfc(v=vs.110).aspx">Элементы языка регулярных выражений — краткий справочник</a><br />
+            <a target="_blank" href="https://msdn.microsoft.com/ru-ru/library/yd1hzczs(v=vs.110).aspx">Параметры регулярных выражений</a>
+        </div>
+        @RenderBody()
+    </div>
+
+    <script data-main="@Url.Content("~/scripts/main")" src="@Url.Content("~/scripts/require.js")"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>
